@@ -55,9 +55,9 @@
 // "Output    Output      Phase     Duty      Pk-to-Pk        Phase"
 // "Clock    Freq (MHz) (degrees) Cycle (%) Jitter (ps)  Error (ps)"
 //----------------------------------------------------------------------------
-// CLK_OUT1___140.000____180.000______50.0______210.491____199.399
+// CLK_OUT1___100.000____180.000______50.0______210.491____199.399
 // CLK_OUT2____26.923______0.000______50.0______300.365____199.399
-// CLK_OUT3___140.000______0.000______50.0______210.491____199.399
+// CLK_OUT3___100.000______0.000______50.0______210.491____199.399
 // CLK_OUT4____50.000______0.000______50.0______264.548____199.399
 //
 //----------------------------------------------------------------------------
@@ -108,13 +108,13 @@ module PLL_clock
     .DIVCLK_DIVIDE          (1),
     .CLKFBOUT_MULT          (14),
     .CLKFBOUT_PHASE         (0.000),
-    .CLKOUT0_DIVIDE         (5),
+    .CLKOUT0_DIVIDE         (7),
     .CLKOUT0_PHASE          (180.000),
     .CLKOUT0_DUTY_CYCLE     (0.500),
     .CLKOUT1_DIVIDE         (26),
     .CLKOUT1_PHASE          (0.000),
     .CLKOUT1_DUTY_CYCLE     (0.500),
-    .CLKOUT2_DIVIDE         (5),
+    .CLKOUT2_DIVIDE         (7),
     .CLKOUT2_PHASE          (0.000),
     .CLKOUT2_DUTY_CYCLE     (0.500),
     .CLKOUT3_DIVIDE         (14),
