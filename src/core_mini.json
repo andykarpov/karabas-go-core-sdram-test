@@ -1,0 +1,15 @@
+{
+    "id": "sdrtest",
+    "name": "SDRAM Test",
+    "build": "26011500",
+    "bitstream": "karabas_mini_top.bin",
+    "visible": false,
+    "type": "none",
+    "order": 255,
+    "eeprom_bank": 0,
+    "roms": [],
+    "osd": [
+        {"type": "T", "bits": 1, "name": "Reset", "options": null, "default": 0, "hotkey": "Ctrl+Alt+Del"},
+        {"type": "T", "bits": 1, "name": "Global Reset", "options": null, "default": 0, "hotkey": "Ctrl+Alt+Bkspace"}
+    ]
+}
