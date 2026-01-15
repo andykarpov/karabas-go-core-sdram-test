@@ -186,8 +186,8 @@ PLL_clock pll (                                 	  // 140 MHz - 140
 	.CLK_OUT4       (clk_50     ),              // 175 MHz - 280\300 phase  -  bad
 	.LOCKED         (locked     ));
 
-// clk = 140 @ 180
-// sdram_clk = 140 @ 0
+// clk = 100 @ 180
+// sdram_clk = 100 @ 0
 
 // sdram clk out
 ODDR2 #(
@@ -287,7 +287,7 @@ vgaout showrez(
 	  .rez3           ({2'b00,mmtst_state}),
 
 	  .bg             (6'b000010  ),					 // color fon?
-	  .freq           (16'h0140   ),              // clock memory: 166 MHz (HEX)
+	  .freq           (16'h0100   ),              // clock memory: 100 MHz
 	  .elapsed        (mins       ),
 	  .mark           (8'h80 >> {~auto, secs[2:0]}),
 	  .hs             (hs         ),
