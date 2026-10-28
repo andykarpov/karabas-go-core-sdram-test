@@ -33,7 +33,7 @@ The core is not converted to karabas-go-modules: it carries its own MCU link and
 ## Gotchas
 
 - The SDRAM chip select is driven on the `FLASH_CS_N` port (pin T3, `/CONF_CS` in the ucf): see the `DRAM_CS_N` comment in the tops.
-- The tops set the geometry for an MT48LC16M16A2 (`DRAM_COL_SIZE` 9, `DRAM_ROW_SIZE` 13); the README names the chip MT48LC18M16A2-75. The last commits lowered the SDRAM clock to 100 MHz for the slower -75 chips; `vgaout` gets `freq` 16'h0100 to print it.
+- The chip is an MT48LC16M16A2-75; the tops set its geometry (`DRAM_COL_SIZE` 9, `DRAM_ROW_SIZE` 13). The last commits lowered the SDRAM clock to 100 MHz for the slower -75 chips; `vgaout` gets `freq` 16'h0100 to print it.
 - The release repos do not carry `sdrtest.kg*` (only `karabas-go/cores/test.kg1` of the other test core).
 
 ## Memory
