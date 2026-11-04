@@ -21,7 +21,7 @@ The core is not converted to karabas-go-modules: it carries its own MCU link and
 ## Build
 
 - Open `src/karabas-go.xise`, `karabas-mini.xise` or `karabas-minig.xise` in ISE 14.7 and run Generate Programming File; "Create Binary Configuration File" is on, so ISE writes `src/karabas_<board>_top.bin`. There is no Makefile or build script.
-- Pack with `make_core.py` (a symlink to `../../karabas-go-tools/make_core/make_core.py`, the sibling repo must be checked out next to this one) from `core.json` (Go), `core_mini.json`, `core_minig.json` into `src/sdrtest.kg1` / `kg2` / `kg3`. The `.bin` and `.kg*` files are committed; the ISE outputs (`*.ncd`, `*.par`, `xst/`, `_ngo/`, ...) are in `.gitignore`.
+- Pack with `make_core.py` (a symlink to `../../karabas-go-tools/make_core/make_core.py`, the sibling repo must be checked out next to this one) from `core.json` (one file for all boards: the common keys, `boards` for what differs; kgo2, karabas-go-tools `docs/kgo2.md`) into `src/sdrtest.kg` (`make_core.py core.json sdrtest.kg`, or `--boards <board>` for one board's bitstream). The `.bin` and `.kg` files are committed; the ISE outputs (`*.ncd`, `*.par`, `xst/`, `_ngo/`, ...) are in `.gitignore`.
 - The json: id `sdrtest`, `"visible": false`, `"type": "none"`, no ROMs, `eeprom_bank` 0, OSD items Reset and Global Reset.
 
 ## MCU link
@@ -34,7 +34,7 @@ The core is not converted to karabas-go-modules: it carries its own MCU link and
 
 - The SDRAM chip select is driven on the `FLASH_CS_N` port (pin T3, `/CONF_CS` in the ucf): see the `DRAM_CS_N` comment in the tops.
 - The chip is an MT48LC16M16A2-75; the tops set its geometry (`DRAM_COL_SIZE` 9, `DRAM_ROW_SIZE` 13). The last commits lowered the SDRAM clock to 100 MHz for the slower -75 chips; `vgaout` gets `freq` 16'h0100 to print it.
-- The release repos do not carry `sdrtest.kg*` (only `karabas-go/cores/test.kg1` of the other test core).
+- The release repos do not carry `sdrtest.kg*` (only `cores/test.kg` of the other test core).
 
 ## Memory
 
