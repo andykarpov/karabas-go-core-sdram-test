@@ -28,8 +28,8 @@ JSON = core.json
 
 # map / par options (as the .xise projects had them, the same on the three boards); the cost table
 # per board: 2 first (the one that routes best on these cores), the same on the three
-MAP_T_go ?= 2
-MAP_T_mini ?= 2
+MAP_T_go ?= 3  # link v2 (26111327)
+MAP_T_mini ?= 6  # link v2 (26111327): -t 2..5 missed the tester clock at 167 MHz by 50..380 ps
 MAP_T_minig ?= 3  # 26111321: -t 2 missed the tester clock at 167 MHz by 10 ps
 MAP = -logic_opt off -ol high -xe n -xt 0 -register_duplication off -r 4 -global_opt off -mt 2 -detail -ir off -pr b -lc off -power off
 PAR = -ol high -xe n -mt 4

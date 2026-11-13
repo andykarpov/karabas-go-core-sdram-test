@@ -220,7 +220,21 @@ NET "FLASH_HOLD_N"  LOC="P12"  | IOSTANDARD = LVCMOS33; # CONF_IO3
 
 # Timings
 
-PIN "pll/clkout1_buf.O" CLOCK_DEDICATED_ROUTE = FALSE;
-
 NET "MCU_SCK" TNM_NET = "clk_mcu";
 TIMESPEC "TS_CLK_MCU" = PERIOD "clk_mcu" 30 MHz;
+
+TIMESPEC "TS_CLK_50MHZ" = PERIOD "CLK_50MHZ" 20 ns HIGH 50%;
+# the link v2 side of kg_mcu2 (MCU_SCK) and the core side (clk_50) meet only through its toggles
+NET "clk_50" TNM_NET = "TG_CLK_SYS";
+TIMESPEC "TS_MCU_TO_SYS" = FROM "clk_mcu" TO "TG_CLK_SYS" 25 ns DATAPATHONLY;
+TIMESPEC "TS_SYS_TO_MCU" = FROM "TG_CLK_SYS" TO "clk_mcu" 25 ns DATAPATHONLY;
+# the clock domains meet only through slow or quasi-static values (the counters of the tester shown
+# on the screen, its fail flag synchronised in clk_50, the chosen frequency, the OSD of kg_l2_osd_overlay)
+NET "clk" TNM_NET = "TG_FX";
+NET "clk_27" TNM_NET = "TG_VID";
+TIMESPEC "TS_FX_VID" = FROM "TG_FX" TO "TG_VID" TIG;
+TIMESPEC "TS_FX_SYS" = FROM "TG_FX" TO "TG_CLK_SYS" TIG;
+TIMESPEC "TS_SYS_FX" = FROM "TG_CLK_SYS" TO "TG_FX" TIG;
+TIMESPEC "TS_SYS_VID" = FROM "TG_CLK_SYS" TO "TG_VID" TIG;
+TIMESPEC "TS_VID_SYS" = FROM "TG_VID" TO "TG_CLK_SYS" TIG;
+PIN "pll/clkout1_buf.O" CLOCK_DEDICATED_ROUTE = FALSE;
