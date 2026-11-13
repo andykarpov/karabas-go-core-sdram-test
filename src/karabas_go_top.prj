@@ -1,0 +1,8 @@
+vhdl work "rtl/spi/spi_slave.vhd"
+verilog work "rtl/common/sdram_control.v"
+verilog work "rtl/common/rnd_vec_gen.v"
+verilog work "rtl/pll/PLL_clock.v"
+vhdl work "rtl/mcu/mcu.vhd"
+verilog work "rtl/common/vgaout.v"
+verilog work "rtl/common/mem_tester.v"
+verilog work "rtl/karabas_go_top.v"

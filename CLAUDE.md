@@ -8,7 +8,7 @@ An SDRAM test core for the Karabas Go, Mini and Mini G boards: Xilinx Spartan-6 
 
 Three tops: `src/rtl/karabas_go_top.v` (VGA through the video DAC, `VGA_R/G/B` 8 bits each from the 2-bit colors), `karabas_mini_top.v` and `karabas_minig_top.v` (HDMI through `rtl/hdmi/hdmi_top.v`). The ISE projects set the Verilog macro `HW_ID1` / `HW_ID2` / `HW_ID3`.
 
-The core is not converted to karabas-go-modules: it carries its own MCU link and HDMI code.
+Mini G is on MCU link v2 (2026-11-13, build 26111321): `kg_mcu2`, `kg_l2_osd_overlay` and `zhdmi_top` of the `modules` submodule (karabas-go-modules, branch link-v2), the clock keys (below). Go and Mini still carry their own MCU link (`rtl/mcu/mcu.vhd`) and HDMI code until their pass.
 
 ## Layout
 
@@ -20,7 +20,8 @@ The core is not converted to karabas-go-modules: it carries its own MCU link and
 
 ## Build
 
-- Open `src/karabas-go.xise`, `karabas-mini.xise` or `karabas-minig.xise` in ISE 14.7 and run Generate Programming File; "Create Binary Configuration File" is on, so ISE writes `src/karabas_<board>_top.bin`. There is no Makefile or build script.
+- `cd src && make minig` (`go`, `mini`, or all without a target): XST, map / par (Mini G `-t 3`), bitgen and the `.kg`, from `karabas_<board>_top.prj` / `.xst` / `.ut` and `karabas_<board>.ucf`. The `.xise` projects are gone (2026-11-13).
+- Mini G clocks: the tester clock is a DCM_CLKGEN on `clk_50` of the PLL, M / D programmed over PROG from clk_50 (table of 8: 100..166 MHz, Up / Down, Enter auto mode as MiSTer MemTest); its timing is analysed at CLKFX_MD_MAX 3.34 (167 MHz). SDR_CLK = CLKFX180 through an ODDR2. The UCF has TIG between the tester clock, clk_27 (video) and clk_50.
 - Pack with `make_core.py` (a symlink to `../../karabas-go-tools/make_core/make_core.py`, the sibling repo must be checked out next to this one) from `core.json` (one file for all boards: the common keys, `boards` for what differs; kgo2, karabas-go-tools `docs/kgo2.md`) into `src/sdrtest.kg` (`make_core.py core.json sdrtest.kg`, or `--boards <board>` for one board's bitstream). The `.bin` and `.kg` files are committed; the ISE outputs (`*.ncd`, `*.par`, `xst/`, `_ngo/`, ...) are in `.gitignore`.
 - The json: id `sdrtest`, `"visible": false`, `"type": "none"`, no ROMs, `eeprom_bank` 0, OSD items Reset and Global Reset.
 
