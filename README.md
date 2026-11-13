@@ -22,7 +22,7 @@ that MemTest.
 
 | Key | What it does |
 |---|---|
-| Up / Down | The next / previous SDRAM clock: 100, 110, 120, 130, 140, 150, 160, 166 MHz (Mini G) |
+| Up / Down | The next / previous SDRAM clock: 100, 110, 120, 130, 140, 150, 160, 166 MHz |
 | Enter | Auto mode on / off: after each minute with no errors the clock goes one step up; an error takes it one step down and ends auto mode |
 | OSD Reset | Starts the test again |
 | OSD Global Reset | Back to the boot core |
@@ -34,11 +34,11 @@ board, not a fault. A board with errors at 100 MHz has a problem (the chip, its 
 
 ## Boards
 
-- Mini G (build 26111321): MCU link v2 (`kg_mcu2`), the OSD and HDMI of
-  [karabas-go-modules](https://github.com/andykarpov/karabas-go-modules), the clock keys. The
+- All three boards: MCU link v2 (`kg_mcu2`, firmware 26111315 or later), the OSD of
+  [karabas-go-modules](https://github.com/andykarpov/karabas-go-modules) and the clock keys. The
   tester clock comes from a DCM_CLKGEN of the FPGA, programmed at run time (CLKFX = 50 MHz x M / D);
-  the SDRAM gets it inverted, as with the PLL before.
-- Go, Mini: the previous build (MCU link v1, a fixed 100 MHz, no keys) until their move to link v2.
+  the SDRAM gets it inverted, as with the PLL before. Mini G and Mini: HDMI; Go: VGA.
+- Builds: Mini G 26111321 (checked on the board), Mini and Go 26111327 (not run on a board yet).
 
 ## Build
 
